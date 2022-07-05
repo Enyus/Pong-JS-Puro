@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    background-color: #545454;
+    margin: 0;
+    padding: 5px;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+p {
+    margin: unset;
+}
+
+p.legendabotao {
+    font-size: 14px;
+}
+
+aside {
+    width: 50px;
+    height: 310px;
+}
+
+aside, div.botaojogar, div.botaopausar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.botaopausar {
+    display: none;
+}
+
+main.canvas {
+    width: 370px;
+    height: 310px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+div.pontos {
+    display: flex;
+    width: 370px;
+    justify-content: space-around;
+    padding: 5px;
+    position: fixed;
+}
+
+div.linha {
+    height: 310px;
+    width: 0;
+    border-right: 2px dashed white;
+    align-self: center;
+    position: fixed;
+}
+
+div.bolinha {
+    height: 15px;
+    width: 15px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+    left: 177.5px;
+    top: 147.5px;
+    z-index: 10;
+}
+
+button {
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+}
