@@ -9,10 +9,14 @@
 body {
     background-color: #545454;
     margin: 0;
-    padding: 5px;
     display: flex;
     height: 100vh;
     width: 100vw;
+}
+
+div.jogo {
+    display: flex;
+    padding: 5px;
 }
 
 p {
@@ -35,6 +39,27 @@ aside, div.botaojogar, div.botaopausar {
     align-items: center;
 }
 
+div.controle {
+    height: 100%;
+    width: 34px;
+    background-color: white;
+    border: 2px solid #000000;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.joystick {
+    height: 30px;
+    width: 30px;
+    background: #545454;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    position: relative;
+    top: 130px;
+}
+
 div.botaopausar {
     display: none;
 }
@@ -45,6 +70,7 @@ main.canvas {
     background-color: black;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 div.pontos {
@@ -70,7 +96,7 @@ div.bolinha {
     border-radius: 50%;
     position: relative;
     left: 177.5px;
-    top: 147.5px;
+    top: 140px;
     z-index: 10;
 }
 
@@ -80,4 +106,89 @@ button {
     border-radius: 50%;
     height: 45px;
     width: 45px;
+}
+
+div.raqueteJogador {
+    height: 70px;
+    width: 10px;
+    position: relative;
+    background-color: white;
+    top: 97.5px;
+    left: 14px;
+}
+
+div.raqueteIA {
+    height: 70px;
+    width: 10px;
+    position: relative;
+    background-color: white;
+    top: 27.5px;
+    left: 350px;
+}
+
+div.virarcelular {
+    display: none;
+}
+
+div.virarcelular img {
+    border-radius: 50%;
+    height: 50px;
+    margin: 20px;
+    transform: rotate(45deg);
+}
+
+div.resultado {
+    position: fixed;
+    left: 40%;
+    top: 20%;
+    display: none;
+}
+
+div.resultado button {
+    width: 100px;
+    height: 50px;
+    color: black;
+    font-size: 15px;
+    margin-top: 130px;
+}
+
+@keyframes rodacelular {
+    0% {
+        transform: rotate(45deg);
+    }
+
+    /* 25% {
+        transform: rotate(-90deg);
+    } */
+
+    50% {
+        transform: rotate(-45deg);
+    }
+
+    /* 75% {
+        transform: rotate(-90deg);
+    } */
+
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@media screen and (max-width: 320px) {
+    div.jogo {
+        display: none;
+    }
+
+    div.virarcelular {
+        display: block;
+        margin: auto;
+        padding: 0 35px;
+        text-align: center;
+        font-size: 25px;
+    }
+
+    div.virarcelular img {
+        animation: rodacelular 2s infinite;
+    }
+
 }
