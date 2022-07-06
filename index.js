@@ -22,7 +22,6 @@ let raqueteJogador = {
 };
 let raqueteIA = {
     y: 27.5,
-    vely: 20,
     chanceErrar: 0
 };
 
@@ -33,6 +32,9 @@ let marcadorPontosJogador = document.getElementById("pontosJogador");
 let marcadorPontosIA = document.getElementById("pontosIA");
 let mensagemFim = document.getElementById("mensagem");
 let divResultado = document.getElementById("resultado");
+
+// Variáveis do Controle:
+let inputRange = document.getElementById("range");
 
 /* Correlações das variáveis Y entre bolinha e raquetes:
     - Quando a posição é relativa, ela é relativa ao height/width do 'objeto' (no caso da div)
@@ -67,15 +69,22 @@ function moverBolinha() {
     };
 };
 
+let count = 0;
+
 function atualizar() {
     bolinha.x += bolinha.velx;
     bolinha.y += bolinha.vely;
     iconeBolinha.style.left = `${bolinha.x}px`;
     iconeBolinha.style.top = `${bolinha.y}px`;
     raqueteIA.y = bolinha.y - 100 + raqueteIA.chanceErrar;
+    if (count == 200) {
+        raqueteIA.chanceErrar = parseInt(Math.random()*(35 + 60) - 60);
+        count = 0;
+    }
     iconeRaqueteIA.style.top = `${raqueteIA.y}px`;
     marcadorPontosJogador.innerHTML = pontosJogador;
     marcadorPontosIA.innerHTML = pontosIA;
+    count += 1;
     checarVencedor();
     // código para esperar 10 milisegundos antes do próximo loop
     window.setTimeout(moverBolinha, 10);
@@ -133,9 +142,17 @@ function reset () {
 window.onkeydown = (e) => {
     if (e.key == "ArrowUp" && raqueteJogador.y >= -20) {
         raqueteJogador.y -= raqueteJogador.vely;
+        inputRange.value = `${raqueteJogador.y}`;
     }
     if (e.key == "ArrowDown" && raqueteJogador.y <= 227.5) {
         raqueteJogador.y += raqueteJogador.vely;
+        inputRange.value = `${raqueteJogador.y}`;
     }
     iconeRaqueteJogador.style.top = `${raqueteJogador.y}px`;
 };
+
+inputRange.oninput = (e) => {
+    // console.log(inputRange.value);
+    raqueteJogador.y = inputRange.value;
+    iconeRaqueteJogador.style.top = `${raqueteJogador.y}px`;
+}
